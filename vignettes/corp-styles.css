@@ -1,0 +1,46 @@
+body {
+  font-family: Calibri, helvetica, sans-serif;
+}
+
+h1 {
+  color: rgb(226, 192, 78);
+  font-size: 127%;
+}
+
+.title {
+  margin-right: 200px;
+}
+
+h2 {
+  color: rgb(11, 111, 111);
+  font-size: 121%;
+}
+
+h3 {
+  color: rgb(11, 11, 111);
+  font-size: 109%;
+  font-weight: bold;
+}
+
+h4 {
+  color: rgb(221, 221, 22);
+  font-size: 100%;
+  font-weight: bold;
+  font-style: italic;
+}
+
+h5 {
+  color: rgb(001, 110, 0040);
+  font-size: 100%;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.watermark {
+  opacity: 0.2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 500%;
+  color: #00407d;
+}
