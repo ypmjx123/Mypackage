@@ -42,7 +42,7 @@ devtools::install_local("d:/R/libs/mypackage")
 or install.packages("./Mypackage_1.3.1.tar.gz", repos = NULL, type = "source")
 
 # Install mypackage online
-remotes::install_github(ypmjx123/Mypackage")
+remotes::install_github("ypmjx123/Mypackage")
 
 # Load the package
 library(Mypackage)
