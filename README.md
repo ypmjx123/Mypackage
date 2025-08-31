@@ -1,111 +1,111 @@
-# Mypackage: 生物信息数据分析工具包
+# Mypackage: A Bioinformatic Data Analysis Toolkit
 
-## 项目简介
-Mypackage是一个全面的生物信息数据分析R包，专注于癌症基因组学、表达谱分析和临床数据整合分析。该包提供了一系列高效的工具函数，帮助研究人员快速处理、分析和可视化各种生物信息学数据。
+## Project Overview
+Mypackage is a comprehensive bioinformatic data analysis R package focusing on cancer genomics, expression profile analysis, and integrated analysis of clinical data.  This package provides a series of efficient tool functions to help researchers quickly process, analyze, and visualize various bioinformatic data.
 
-## 主要功能和特点
+## Main Functions and Features
 
-### 1. 突变数据分析
-- MAF格式数据处理和分析
-- 突变与临床数据相关性分析
-- 突变网络构建与可视化
-- 突变与表达数据整合分析
+### 1. Mutation Data Analysis
+- MAF format data processing and analysis
+- Correlation analysis between mutation and clinical data
+- Mutation network construction and visualization
+- Integrated analysis of mutation and expression data
 
-### 2. 表达谱分析
-- 基因表达差异分析
-- GSEA富集分析与可视化
-- 免疫相关基因表达分析与可视化
+### 2. Expression Profile Analysis
+- Differential gene expression analysis
+- GSEA enrichment analysis and visualization
+- Visualization of immune-related gene expression analysis
 
-### 3. 临床数据与生存分析
-- 生存曲线绘制
-- COX森林图分析
-- 临床特征与分子特征关联分析
+### 3. Clinical Data and Survival Analysis
+- Survival curve plotting
+- COX forest plot analysis
+- Correlation analysis between clinical and molecular features
 
-### 4. 基因组不稳定性分析
-- HRD(同源重组缺陷)评分计算
-- CNV(拷贝数变异)和SV(结构变异)获取
+### 4. Genomic Instability Analysis
+- HRD (Homologous Recombination Deficiency) score calculation
+- CNV (Copy Number Variation) and SV (Structural Variation) acquisition
 
-### 5. 数据可视化工具
-- 多种热图绘制功能
-- 通路与突变整合可视化
-- 免疫浸润可视化
+### 5. Data Visualization Tools
+- Multiple heatmap plotting functions
+- Integrated visualization of pathways and mutations
+- Immune infiltration visualization
 
-## 安装指南
+## Installation Guide
 
-### 从本地安装
+### Local Installation
 ```R
-# 安装devtools包（如果尚未安装）
+# Install the devtools package (if not already installed)
 install.packages("devtools")
 
-# 从本地安装mypackage
+# Install mypackage from local directory
 devtools::install_local("d:/R/libs/mypackage")
-或install.packages("./Mypackage_1.3.1.tar.gz", repos = NULL, type = "source")
+or install.packages("./Mypackage_1.3.1.tar.gz", repos = NULL, type = "source")
 
-#在线安装mypackage
-remotes::install_git("https://gitee.com/YPM2022/mypackage")
+# Install mypackage online
+remotes::install_github(ypmjx123/Mypackage")
 
-# 加载包
+# Load the package
 library(Mypackage)
 ```
 
-### 依赖包
-mypackage依赖于以下R包，安装时会自动安装：
-- ggplot2: 数据可视化
-- maftools: MAF文件处理与分析
-- survival & survminer: 生存分析
-- limma: 表达差异分析
-- dplyr: 数据处理
-- tidyr: 数据整理
-- stringr: 字符串处理
-- biomaRt: 基因注释
-- pheatmap: 热图绘制
+### Dependent Packages
+Mypackage depends on the following R packages, which will be automatically installed during installation:
+-ggplot2: Data visualization
+-maftools: MAF file processing and analysis
+-survival & survminer: Survival analysis
+-limma: Differential expression analysis
+-dplyr: Data manipulation
+-tidyr: Data tidying
+-stringr: String manipulation
+-biomaRt: Gene annotation
+-pheatmap: Heatmap plotting
 
-## 内置数据集
+## Built-in Datasets
 
-mypackage包含多个内置数据集，便于用户学习和测试功能：
+Mypackage includes several built-in datasets for users to learn and test functions:：
 
-| 数据集名称 | 描述 |
+| Dataset Name | Description |
 |----------|------|
-| `mutation_CRC` | 结直肠癌突变数据 |
-| `clin_TCGA` | TCGA临床数据 |
-| `exp_raw` | 基因表达原始数据 |
-| `Gene_group_CRC1` | CRC相关基因集 |
-| `pathway_data` | 通路相关数据 |
-| `hotsgenes` | 热点基因列表 |
-| `tumor_ploidy` | 肿瘤倍性数据 |
+| `mutation_CRC` | Colorectal cancer mutation data |
+| `clin_TCGA` | TCGA clinical data |
+| `exp_raw` | Raw gene expression data |
+| `Gene_group_CRC1` | CRC-related gene set |
+| `pathway_data` | Pathway-related data |
+| `hotsgenes` | Hotspot gene list |
+| `tumor_ploidy` | Tumor ploidy data |
 
-## 主要功能模块
+## Main Function Modules
 
-### 1. 突变数据分析模块
+### 1. Mutation Data Analysis Module
 
-#### maf_cor函数
-分析突变数据与临床特征之间的相关性。
+#### maf_cor
+Analyzes the correlation between mutation data and clinical characteristics.
 ```R
-# 示例用法
+# Example usage
 result <- maf_cor(mutation_data = mutation_CRC, clin = clin_TCGA, top=20,corrplot_method = "circle")
 ```
 
-#### mut_network函数
-构建突变基因网络。
+#### mut_network
+Constructs a mutation gene network.
 ```R
-# 示例用法
+# Example usage
 network <- mut_network(SNV=mutation_CRC,top=20,pValue=0.01,customdata=NULL)
 ```
 
-#### mutToMAF函数
-将自定义突变格式转换为MAF格式。
+#### mutToMAF
+Converts custom mutation format to MAF format.
 ```R
-# 示例用法
+# Example usage
 maf_obj <- mutToMAF(root_dir=root_dir,clin=clindata,tumor_t=10,site_depth=100,hotspot_vaf=0.009,
                  non_hotspot_vaf=0.045,hotspotloss_vaf=0.095,non_hotspotloss_vaf=0.195)
 ```
 
-### 2. 表达谱分析模块
+### 2. Expression Profile Analysis Module
 
-#### limma.dif.visual函数
-差异表达分析与可视化。
+#### limma.dif.visual
+Differential expression analysis and visualization.
 ```R
-# 示例用法
+# Example usage
 dif_results <- limma.dif.visual(exprdata=exp_CRC[,-1],
                            pdata=Gene_group_CRC1,datatype="TPM",
                            Type=c("Wild", "Mut"),diff_method="limma",
@@ -120,19 +120,19 @@ dif_results <- limma.dif.visual(exprdata=exp_CRC[,-1],
                            KEGG=TRUE,KEGG.plot="dotplot",rel_heights= c(1.5, 0.5, 1))
 ```
 
-#### GSEAplot2函数
-GSEA富集分析与高级可视化。
+#### GSEAplot2
+GSEA enrichment analysis and advanced visualization.
 ```R
-# 示例用法
+# Example usage
 gsea_plot <- GSEAplot2(x = gseaResult)
 ```
 
-### 3. 生存分析模块
+### 3. Survival Analysis Module
 
-#### ggsurvplots函数
-生存曲线绘制与比较。
+#### ggsurvplots
+Survival curve plotting and comparison.
 ```R
-# 示例用法
+# Example usage
 surv_plot <- ggsurvplotsggsurvplots(data = clin_TCGA, conf.int = FALSE,time_col = "PFS_MONTHS",
                  status_col = "PFS_STATUS", group_col = "Status", pvalue_table = TRUE,
                  palette = ggsci::pal_ucscgb()(4), risk.table = FALSE, title = NULL,
@@ -141,10 +141,10 @@ surv_plot <- ggsurvplotsggsurvplots(data = clin_TCGA, conf.int = FALSE,time_col 
                  surv.median.line="hv",surv.scale="default",legend=FALSE)
 ```
 
-#### cox_forest函数
-COX回归森林图绘制。
+#### cox_forest
+COX regression forest plot plotting.
 ```R
-# 示例用法
+# Example usage
 cox = cox_forest(data=aa,
                           time_col = "OS_MONTHS",
                           status_col = "OS_STATUS",
@@ -160,28 +160,28 @@ cox = cox_forest(data=aa,
                         log2=T,footnote=NULL)
 ```
 
-### 4. 基因组不稳定性分析模块
+### 4. Genome instability analysis module
 
-#### HRDscore函数
-计算HRD(同源重组缺陷)评分。
+#### HRDscore
+Calculate the HRD (homologous recombination defect) score.
 ```R
-# 示例用法
+# Example usage
 hrd_scores <- HRDscore(dirpath = "d:/R/libs/mypackage/inst/HRD/")
 ```
 
-#### CNV_SV_get函数
-获取和分析CNV与SV数据。
+#### CNV_SV_get
+Acquire and analyze CNV and SV data.
 ```R
-# 示例用法
-cnv_sv_data <- CNV_SV_get(data=data,Type=c("重排/融合","扩增"))
+# Example usage
+cnv_sv_data <- CNV_SV_get(data=data,Type=c("rearrangement/fusion","amplification"))
 ```
 
-### 5. 可视化工具模块
+### 5. Visual tools module
 
-#### sig_Heatmap函数
-特征热图绘制。
+#### sig_Heatmap
+Feature heat map drawing.
 ```R
-# 示例用法
+# Example usage
 heatmap <- sig_Heatmap(input = input, features = feas,ID ="SAMPLE_ID",show_plot=F,
             condiction=condiction,id_condiction=colnames(condiction)[[1]],col_condiction=colnames(condiction)[[2]],
              cols_group=c("#757575","#FF4040"),row_group=c("red","green"),
@@ -191,10 +191,10 @@ heatmap <- sig_Heatmap(input = input, features = feas,ID ="SAMPLE_ID",show_plot=
              group = "PREX2",row_title="Regulate", scale = TRUE,name="Expression")
 ```
 
-#### immu_visual函数
-免疫浸润可视化。
+#### immu_visual
+Immune infiltration visualization.
 ```R
-# 示例用法
+# Example usage
 immu_plot <- immu_visual(im=NULL,exp=exp_CRC[,-1],
                     method = 'epic',
                     sample_group=Gene_group_CRC1,
@@ -205,94 +205,94 @@ immu_plot <- immu_visual(im=NULL,exp=exp_CRC[,-1],
                     test = "wilcox.test")
 ```
 
-## 完整使用示例
+## Complete usage example
 
-以下是一个完整的分析流程示例，展示如何使用mypackage进行从数据处理到可视化的全流程分析：
+Here is an example of a complete analysis process that shows how to use mypackage for the full range of analysis from data processing to visualization:
 
 ```R
-# 加载包和数据
+# Load package and data
 library(Mypackage)
 data(mutation_CRC)
 data(clin_TCGA)
 data(exp_raw)
-# 1. 突变数据分析
+# 1. Mutagenesis data analysis
 mut_cor_result <- maf_cor(mutation_data = mutation_CRC, clin = clin_TCGA, gene = "TP53")
 print(mut_cor_result)
 
-# 2. 表达差异分析
+# 2. Expression difference analysi
 dif_genes <- limma.dif.visual(exp_matrix = exp_raw, group_info = sample_group)
 
-# 3. GSEA分析
+# 3. GSEA analyse
 gsea_results <- GSEAplot2(gene_list = dif_genes$logFC, pathway_db = "KEGG")
 
-# 4. 生存分析
+# 4.survival analysis
 survival_plot <- ggsurvplots(surv_data = clin_TCGA, gene_expr = exp_raw, gene = "TP53")
 
-# 5. 综合可视化
+# 5. Comprehensive visualization
 heatmap_plot <- sig_Heatmap(expr_matrix = exp_raw, group_info = sample_group, top_genes = 50)
 ```
 
-## 项目结构
+## Project structure
 
-mypackage的项目结构组织如下：
+The project structure of Mypackage is organized as follows:
 
 ```
 mypackage/
-├── R/                # R函数源码文件
-├── data/             # 内置数据集
-├── inst/             # 额外的安装文件（HRD数据、示例数据等）
-├── man/              # 帮助文档
-├── vignettes/        # 长篇文档和教程
-├── DESCRIPTION       # 包元数据和依赖信息
-├── NAMESPACE         # 命名空间定义
-└── README.md         # 项目说明文档（当前文件）
+├── R/                # R Function source file
+├── data/             # Built-in data set
+├── inst/             # Additional installation files (HRD data, sample data, etc.)
+├── man/              # Help document
+├── vignettes/        # Long documents and tutorials
+├── DESCRIPTION       # Metadata and dependency information
+├── NAMESPACE         # Definition of namespaces
+└── README.md         # Project Description Document
 ```
 
-## 函数列表
+## Function list
 
-mypackage包含以下主要函数：
+Mypackage contains the following main functions:
 
-| 函数名 | 描述 |
+| function name | characterization |
 |-------|------|
-| `maf_cor` | 突变与临床数据相关性分析 |
-| `mut_network` | 突变网络构建 |
-| `mutToMAF` | 转换为MAF格式 |
-| `limma.dif.visual` | 差异表达分析与可视化 |
-| `GSEAplot2` | GSEA富集分析 |
-| `ggsurvplots` | 生存曲线绘制 |
-| `cox_forest` | COX森林图分析 |
-| `HRDscore` | HRD评分计算 |
-| `CNV_SV_get` | CNV和SV数据获取(非分析) |
-| `sig_Heatmap` | 特征热图绘制 |
-| `immu_visual` | 免疫浸润可视化 |
-| `gene.mut_exp` | 基因突变与表达整合分析 |
-| `path_mut_visual` | 通路与突变整合可视化 |
-| `get_annotation` | 基因注释获取 |
-| `exp_geneIDtoSYMBOL` | 表达数据ID转换 |
+| `maf_cor` | Correlation analysis between mutation and clinical data |
+| `mut_network` | Construction of mutation networks |
+| `mutToMAF` | Convert to MAF format |
+| `limma.dif.visual` | Differential expression analysis and visualization |
+| `GSEAplot2` | GSEA enrichment analysis |
+| `ggsurvplots` | Survial curve mapping |
+| `cox_forest` | COX forest diagram analysis |
+| `HRDscore` | Calculation of the HRD score |
+| `CNV_SV_get` | CNV and SV data acquisition (non-analysis) |
+| `sig_Heatmap` | Feature heat map drawing |
+| `immu_visual` | Immune infiltration visualization |
+| `gene.mut_exp` | Analysis of gene mutation and expression integration |
+| `path_mut_visual` | Visualization of pathway and mutation integration |
+| `get_annotation` | Gene annotation acquisition |
+| `exp_geneIDtoSYMBOL` | Express data ID conversion |
 
-## 文档和帮助
+## Documentation and help
 
-### 查看帮助文档
+### Check out the help documentation
 ```R
-# 查看特定函数的帮助
+# View help for specific functions
 doc <- help("maf_cor")
 
-# 查看包的总体帮助
+# View the overall help for packages
 doc <- help(package = "Mypackage")
 ```
 
-### 浏览 vignettes
+### Browse vignettes
 ```R
-# 查看所有可用的vignettes
+# View all available vignettes
 browseVignettes("Mypackage")
 
-# 打开特定的vignette
+# Open a specific vignette
 vignette("Mypackge")
 ```
 
-## 依赖包
+## Dependent package
 
-Mypackage依赖于以下R包：
+Mypackage depends on the following R packages:
 - R (>= 4.4.3)
 - ggplot2
 - maftools
@@ -307,17 +307,17 @@ Mypackage依赖于以下R包：
 - gridExtra
 - RColorBrewer
 
-## 贡献指南
+## Contribution guide
 
-我们欢迎社区贡献，如果您想为mypackage做出贡献，请按照以下步骤：
+We welcome contributions from the community. If you want to contribute to my package, follow these steps:
 
-1. Fork 本仓库
-2. 创建您的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交您的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启一个Pull Request
+1. Fork warehouse
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Submit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Pushed to branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 参考文献
+## References
 1.  Yao J, Sun Q, Wu H, et al. Decoding the molecular landscape: HER2 and PD-L1 in advanced gastric cancer. Front Immunol. 2025;16:1567308. <doi:10.3389/fimmu.2025.1567308>
 2.  Qiu Q, Tan D, Chen Q, et al. Clinical implications of PD-L1 expression and pathway-related molecular subtypes in advanced Asian colorectal cancer patients. Am J Cancer Res. 2024;14(2):796-808. <doi:10.62347/FSSF9938>
 3.  Ding W, Yang P, Zhao X, et al. Unraveling EGFR-TKI resistance in lung cancer with high PD-L1 or TMB in EGFR-sensitive mutations. Respir Res. 2024;25(1):40. <doi:10.1186/s12931-023-02656-3>
@@ -325,12 +325,12 @@ Mypackage依赖于以下R包：
 5.  Jiang Y, Mai G, Zhao X, et al. Molecular characterization and prognostic implications of KRAS mutations in pancreatic cancer patients: insights from multi-cohort analysis. NPJ Precis Oncol. 2025;9(1):299. Published 2025 Aug 22.      <doi:10.1038/s41698-025-01087-1>
 5.  Cancer Genome Atlas Network. Comprehensive molecular characterization of human colon and rectal cancer. Nature. 2012;487(7407):330-337. Published 2012 Jul 18. <doi:10.1038/nature11252>
 
-## 许可证
+## Licence
 
-本项目采用MIT许可证 - 详见LICENSE文件
+This project uses the MIT license-see LICENSE for details
 
-## 联系信息
+## Contact information
 
-如有问题或建议，请联系：
-- 邮箱：[ypm_yy@outlook.com]
-- Gitee：[https://github.com/ypmjx123/Mypackage.git]
+For questions or suggestions, please contact:
+- Mailbox：[ypm_yy@outlook.com]
+- Github：[https://github.com/ypmjx123/Mypackage.git]
