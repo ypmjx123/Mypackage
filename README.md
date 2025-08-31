@@ -333,4 +333,4 @@ Mypackage依赖于以下R包：
 
 如有问题或建议，请联系：
 - 邮箱：[ypm_yy@outlook.com]
-- Gitee：[https://gitee.com/YPM2022/mypackage.git]
+- Gitee：[https://github.com/ypmjx123/Mypackage.git]
