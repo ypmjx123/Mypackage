@@ -1,0 +1,15 @@
+Package: Mypackage
+Type: Package
+Title: Comprehensive Analyzing and Visualization of Gene Mutation, Expression
+Version: 1.3.1
+Author: Yang Pengmin
+Maintainer: Yang Pengmin<1224061805@qq.com>
+Description: Comprehensive Analyzing and Visualization of Gene Mutation, Expression.
+Depends: R (>= 4.4.3)
+Imports: ggplot2,igraph,ggraph,maftools,survival,survminer,ggrepel, dplyr, Hmisc, tidyr, ggpubr,stringr,IOBR,xCell,tools,limma,DESeq2,edgeR,tidyverse,ComplexHeatmap,tidyHeatmap,org.Hs.eg.db,clusterProfiler,enrichplot,base,ggstatsplot,Seurat,SingleR,celldex,harmony,ggcor,corrplot,scarHRD,forestplot,tibble,tableone
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
